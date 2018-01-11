@@ -20,16 +20,19 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        activityIndicator.startAnimating()
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.pullRefresh(_:)), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
         tableView.rowHeight = 200.0
-        activityIndicator.startAnimating()
         fetchMovies()
-        activityIndicator.stopAnimating()
-        activityIndicator.isHidden = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.5) {
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.isHidden = true
+        }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
