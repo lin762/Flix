@@ -13,6 +13,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var movies: [[String:Any]] = []
     var refreshControl: UIRefreshControl!
     
@@ -24,8 +26,10 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         tableView.insertSubview(refreshControl, at: 0)
         tableView.dataSource = self
         tableView.rowHeight = 200.0
-        
+        activityIndicator.startAnimating()
         fetchMovies()
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
