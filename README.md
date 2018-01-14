@@ -12,6 +12,7 @@ The following **required** user stories are complete:
 - [x] User can scroll through a list of movies currently playing in theaters from The Movie DB API (+5pt)
 - [x] User can "Pull to refresh" the movie list (+2pt)
 - [x] User sees a loading state while waiting for the movies to load (+2pt)
+        (since app loaded the data too quickly, the loading state wasn't long enough to be viewed so I kept the animation               running for a little bit longer to make it visible for the sake of the requirement)
 
 The following **optional** user stories are implemented:
 
