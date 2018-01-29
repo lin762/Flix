@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,9 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-eD-vEE">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-eD-vEE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="189" id="DPC-Lf-sgb" customClass="MovieCell" customModule="Flix" customModuleProvider="target">
@@ -30,25 +30,37 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="188.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FyC-6m-r0C">
-                                                    <rect key="frame" x="15" y="11" width="104" height="160"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FyC-6m-r0C">
+                                                    <rect key="frame" x="20" y="16" width="99" height="160"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="99" id="Clw-mu-caP"/>
+                                                        <constraint firstAttribute="height" constant="160" id="vQE-0I-S6Z"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wonder Woman" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJd-c4-VnY">
-                                                    <rect key="frame" x="127" y="11" width="233" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wonder Woman" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pJd-c4-VnY">
+                                                    <rect key="frame" x="127" y="11" width="171" height="28"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="An Amazon princess comes to the world of man to become the the greatest of the female superhero " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRY-wK-VDV">
-                                                    <rect key="frame" x="127" y="50" width="233" height="127"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An Amazon princess comes to the world of man to become the the greatest of the female superhero " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRY-wK-VDV">
+                                                    <rect key="frame" x="127" y="48" width="225" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SRY-wK-VDV" secondAttribute="bottom" constant="10" id="4Vw-lY-xwd"/>
+                                                <constraint firstItem="SRY-wK-VDV" firstAttribute="top" secondItem="pJd-c4-VnY" secondAttribute="bottom" constant="9" id="Njv-6h-I3Y"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SRY-wK-VDV" secondAttribute="trailing" constant="8" id="NmD-fu-jcF"/>
+                                                <constraint firstItem="FyC-6m-r0C" firstAttribute="top" secondItem="xGB-pZ-1aq" secondAttribute="topMargin" constant="5" id="OPb-9d-wvs"/>
+                                                <constraint firstItem="SRY-wK-VDV" firstAttribute="leading" secondItem="pJd-c4-VnY" secondAttribute="leading" id="PHc-FP-1D4"/>
+                                                <constraint firstItem="FyC-6m-r0C" firstAttribute="leading" secondItem="xGB-pZ-1aq" secondAttribute="leadingMargin" constant="5" id="Y97-ok-n6U"/>
+                                                <constraint firstItem="pJd-c4-VnY" firstAttribute="top" secondItem="xGB-pZ-1aq" secondAttribute="topMargin" id="kdL-cv-Qjw"/>
+                                                <constraint firstItem="pJd-c4-VnY" firstAttribute="leading" secondItem="FyC-6m-r0C" secondAttribute="trailing" constant="8" id="uTo-fV-Tbu"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pJd-c4-VnY" secondAttribute="trailing" constant="62" id="xsE-cj-S8h"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="overviewLabel" destination="SRY-wK-VDV" id="5Zo-K9-2aS"/>
@@ -66,6 +78,12 @@
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yM7-eD-vEE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="AOG-OC-aM4"/>
+                            <constraint firstAttribute="bottom" secondItem="yM7-eD-vEE" secondAttribute="bottom" id="LL8-jB-RN9"/>
+                            <constraint firstItem="yM7-eD-vEE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="j6q-Jt-bSS"/>
+                            <constraint firstAttribute="trailing" secondItem="yM7-eD-vEE" secondAttribute="trailing" id="xDT-FH-k7A"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="9Gu-r8-aJ7"/>
@@ -208,6 +226,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="eWn-ai-ULP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OoP-2K-LFW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -245,6 +264,6 @@
         <image name="superhero_tabbar_item" width="21" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Q3l-GH-bMn"/>
+        <segue reference="L1j-UF-TNd"/>
     </inferredMetricsTieBreakers>
 </document>
