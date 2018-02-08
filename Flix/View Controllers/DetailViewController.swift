@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum MovieKeys{
+/*enum MovieKeys{
     static let title = "title"
     static let backdropPath = "backdrop_path"
     static let posterPath = "poster_path"
-}
+}*/
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var overViewLabel: UILabel!
@@ -21,26 +21,21 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var backdropImageView: UIImageView!
     
-    var movie:[String:Any]?
+    var movie: Movie!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let movie = movie{
-            titleLabel.text = movie[MovieKeys.title] as? String
-            releaseDateLabel.text = movie["release_date"] as? String
-            overViewLabel.text = movie["overview"] as? String
-            let backdropPathString = movie[MovieKeys.backdropPath] as! String
-            let posterPathString = movie[MovieKeys.posterPath] as! String
-            let baseURL = "https://image.tmdb.org/t/p/w500"
-            let backdropURL = URL(string: baseURL + backdropPathString)!
-            backdropImageView.af_setImage(withURL: backdropURL)
-            let posterURL = URL(string: baseURL + posterPathString)!
-            posterImageView.af_setImage(withURL: posterURL)
-            
-            
-            
+            titleLabel.text = movie.title
+            releaseDateLabel.text = movie.releaseDate
+            overViewLabel.text = movie.overview
+            if movie.backdropURL != nil{
+                backdropImageView.af_setImage(withURL: movie.backdropURL!)
+            }
+            if movie.posterUrl != nil{
+                posterImageView.af_setImage(withURL: movie.posterUrl!)
+            }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {

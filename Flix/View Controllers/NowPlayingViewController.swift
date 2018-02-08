@@ -15,7 +15,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var movies: [[String:Any]] = []
+    var movies: [Movie] = []
     var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
@@ -42,14 +42,11 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        let posterPathString = movie["poster_path"] as! String
-        let baseUrl = "https://image.tmdb.org/t/p/w500"
-        let posterUrl = URL(string: baseUrl+posterPathString)!
-        cell.posterImageView.af_setImage(withURL: posterUrl)
+        cell.titleLabel.text = movie.title
+        cell.overviewLabel.text = movie.overview
+        if movie.posterUrl != nil{
+            cell.posterImageView.af_setImage(withURL: movie.posterUrl!)
+        }
         return cell
     }
     
@@ -66,10 +63,14 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
             if let error = error{
                 print(error.localizedDescription)
             }else if let data = data{
-                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String:Any]
-                print(dataDictionary)
-                let movies = dataDictionary["results"] as! [[String:Any]]
-                self.movies = movies
+                let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+                
+                self.movies = []
+                for dictionary in movieDictionaries {
+                    let movie = Movie(dictionary: dictionary)
+                    self.movies.append(movie)
+                }
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
             }
