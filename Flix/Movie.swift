@@ -22,4 +22,13 @@ class Movie{
         backdropURL = URL(string: baseURL + (dictionary["backdrop_path"] as? String)!)
         releaseDate = dictionary["release_data"] as? String ?? "No release date"
     }
+    class func movies(dictionaries: [[String: Any]]) -> [Movie] {
+        var movies: [Movie] = []
+        for dictionary in dictionaries {
+            let movie = Movie(dictionary: dictionary)
+            movies.append(movie)
+        }
+        
+        return movies
+    }
 }
